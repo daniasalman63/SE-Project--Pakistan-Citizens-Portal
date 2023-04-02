@@ -1,0 +1,17 @@
+
+.container {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0px;
+    /* background: radial-gradient(circle, #053908, #126C18); */
+}
+
+.container ul {
+    background: radial-gradient(circle, #053908, #126C18);
+    overflow: auto;
+    /* padding: 34px 19px; */
+    margin: 14px 19px;
+    border-radius: 23px;
+    width: 800px;
+    height: 533px;
+}
