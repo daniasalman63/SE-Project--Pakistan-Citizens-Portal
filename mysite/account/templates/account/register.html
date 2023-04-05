@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+{% load static %}
 <style>
     .container {
         box-sizing: border-box;
@@ -17,18 +17,20 @@
         font-family: Arial, Helvetica, sans-serif;
         color: white;
         margin-left: 700px;
-        margin-top: -270px;
+        margin-top: -676px;
     }
 
     .form-field {
         margin-left: 200px;
         margin-top: -4px;
-        font-size: 50px;
+        font-size: 25px;
         border-radius: 10px;
         padding: 5px;
         border: 2px solid #053908;
         background-color: transparent;
         display: inline-block;
+        width: 50%;
+        height: 50px;
     }
 
     .form-label {
@@ -77,6 +79,7 @@
     <p class="title">
         The Pakistan <br>
         Citizens Portal<br></p>
+    <img style="margin-left: 50px;  width: 400px; height: 400px;" src="{% static 'img/faisal-mosque.png' %}" alt="Image description">
 <div class="container">
 <ul>
     <h2 class="createAcc">

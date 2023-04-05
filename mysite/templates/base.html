@@ -4,7 +4,14 @@
 <html>
 <!-- {%load static%} -->
 <!-- <link rel="stylesheet" href="{%static 'css/style.css'%}"> -->
-
+<style>
+    .tab-buttons {
+        color: #053908;
+        font-family: Arial, Helvetica, sans-serif;
+        text-decoration: underline;
+        font-weight: bold;
+    }
+</style>
 <head>
     <script src="https://kit.fontawesome.com/f04a3ca0f4.js" crossorigin="anonymous"></script>
     <title>
@@ -15,9 +22,9 @@
     <p style="color: white">Hello, {{request.user.username}}</p>
     {%else%}
     <p style="text-align: right;">
-        <a href="{% url 'home' %}">Home</a> |
-        <a href="{%url 'register' %}">Register</a> |
-        <a href="{%url 'login'%}">Login</a>
+        <!-- <a href="{% url 'home' %}">Home</a> | -->
+        <a href="{%url 'register' %}" class="tab-buttons">Register</a> |
+        <a href="{%url 'login'%}" class="tab-buttons">Login</a>
     </p>
     {%endif%}
 
