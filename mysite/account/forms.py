@@ -28,7 +28,7 @@ class RegistrationForm(UserCreationForm):
 
 class AccountAuthenticationForm(forms.ModelForm):
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
-    CNIC = forms.CharField(max_length=13, min_length=13, label='CNIC', widget=forms.TextInput(attrs={'placeholder': 'XXXXX-XXXXXXX-X'}))
+    CNIC = forms.CharField(max_length=15, min_length=15, label='CNIC', widget=forms.TextInput(attrs={'placeholder': 'XXXXX-XXXXXXX-X'}))
 
     class Meta:
         model = Account
@@ -43,7 +43,6 @@ class AccountAuthenticationForm(forms.ModelForm):
 
             if not user:
                 raise forms.ValidationError("Invalid login credentials")
-            elif not user.check_cnic(CNIC):
-                raise forms.ValidationError("Invalid CNIC")
+
 
         return self.cleaned_data
