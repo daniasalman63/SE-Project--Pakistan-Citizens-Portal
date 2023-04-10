@@ -1,8 +1,84 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<style>
+    .container {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0px;
+    }
 
-<h2 style="color: whitesmoke">Login</h2>
+    .container ul {
+        background: white;
+        border-radius: 23px;
+        width: 130vh;
+        height: 100vh;
+        font-family: Arial, Helvetica, sans-serif;
+        color: white;
+        margin-left: 700px;
+        margin-top: -55px;
+    }
+    .createAcc{
+        color: #053908; 
+        margin-top: 150px;
+        margin-left: 200px;
+        font-size: 70px;
+    }
+</style>
+<body style="background: linear-gradient(to right, #022705, #0C3F0F);">
+
+
+<div class="container">
+    <ul>
+        <h2 class="createAcc">Sign In</h2>
+        <form method="post">{% csrf_token %}
+            {% for field in login_form %}
+            <p>
+                {{field.label_tag}}
+                {{field}}
+
+                {% if field.help_text %}
+                <small style="color: grey;">
+                    {{field.help_text}}
+                </small>
+                {% endif %}
+                {% for error in field.errors %}
+            <p style="color: red;">
+                {{error}}
+            </p>
+            {% endfor %}
+
+            {% if login_form.non_field_errors %}
+            <div style="color: red;">
+                <p>
+                    {{login_form.non_field_errors}}
+                </p>
+            </div>
+            {% endif %}
+            </p>
+            {% endfor %}
+            {%for field in login_form%}
+            {% for error in field.errors %}
+            <p style="color: red;">
+                {{error}}
+            </p>
+            {% endfor %}
+            {%endfor%}
+
+            {% if login_form.non_field_errors %}
+            <div style="color: red;">
+                <p>
+                    {{login_form.non_field_errors}}
+                </p>
+            </div>
+            {% endif %}
+            <button type="submit">Log in</button>
+        </form>
+    </ul>
+
+</div>
+</body>
+<!-- <h2 style="color: whitesmoke">Login</h2>
 <form method="post">{% csrf_token %}
     {% for field in login_form %}
         <p>
@@ -45,6 +121,6 @@
         </div>
     {% endif %}
     <button type="submit">Log in</button>
-</form>
+</form> -->
 
 {% endblock content %}
