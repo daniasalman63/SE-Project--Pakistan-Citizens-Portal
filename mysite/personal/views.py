@@ -5,7 +5,7 @@ from account.models import Account
 
 def home_screen_view(request):
     if not request.user.is_authenticated:
-        return redirect('register')
+        return redirect('login')
     context={}
 
     accounts = Account.objects.all()

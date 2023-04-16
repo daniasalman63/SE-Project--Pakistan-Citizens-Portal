@@ -38,8 +38,8 @@ class AccountAuthenticationForm(forms.ModelForm):
         if self.is_valid():
             email = self.cleaned_data['email']
             password = self.cleaned_data['password']
-            CNIC = self.cleaned_data['CNIC']
-            user = authenticate(email=email, password=password)
+            cnic = self.cleaned_data['CNIC']
+            user = authenticate(email=email, password=password, CNIC=cnic)
 
             if not user:
                 raise forms.ValidationError("Invalid login credentials")

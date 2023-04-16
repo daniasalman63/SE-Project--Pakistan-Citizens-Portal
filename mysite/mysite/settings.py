@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     #MYAPPS
     'personal',
     'account',
+    'voting',
 
     #DJANGO APPS
     'django.contrib.admin',

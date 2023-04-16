@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .container {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0px;
+  }
+
+  .container ul {
+    background: radial-gradient(circle, #022705, #0C3F0F);
+    /* padding: 34px 19px; */
+    /* margin: 14px 19px; */
+    border-radius: 6vh;
+    width: 191vh;
+    margin-left: 5vh;
+    height: 72vh;
+    font-family: Verdana;
+    color: white;
+  }
+
+  .title {
+        color: white;
+        margin-top: 4vh;
+        margin-left: 4vh;
+        font-size: 6vh;
+        font-weight: 500;
+    }
+</style>
+<body>
+    <div style="padding-top: 4vh;" class="container">
+        <ul>
+            <p class="title">
+                Secure Voting
+            </p>
+        </ul>
+    </div>
+</body>
+
+{% endblock content %}

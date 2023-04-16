@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from personal.views import home_screen_view
+from voting.views import voting_screen_view
 
 from account.views import(
     registration_view,
@@ -27,9 +28,10 @@ from account.views import(
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', home_screen_view, name="home"),
-    path('', registration_view, name="register"),
+    path('register/', registration_view, name="register"),
     path('logout/', logout_view, name="logout"),
-    path('login/', login_view, name="login"),
+    path('', login_view, name="login"),
+    path('voting/', voting_screen_view, name="voting"),
     path('verification/', include('verify_email.urls')),
 
 ]

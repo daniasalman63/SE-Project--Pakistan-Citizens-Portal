@@ -23,43 +23,6 @@
     color: white;
   }
 
-  .navbar {
-    background-color: #022705;
-    width: 203vh;
-
-  }
-
-  .navbar ul {
-    overflow: auto;
-  }
-
-  .navbar li {
-    float: right;
-    list-style: none;
-    margin: 1vh 0.5vh;
-  }
-
-  .navbar li a {
-    /* padding: 1px 1px; */
-    text-decoration: none;
-    color: white;
-    font-size: 3vh;
-    padding-top: 2 vh;
-    /* border-right: 3px solid white;
-        display: list-item; */
-  }
-
-  .navbar li a:hover {
-    color: rgb(116, 212, 116);
-  }
-
-  .search {
-    float: left;
-    color: white;
-    font-size: 3.5vh;
-    font-weight: 700;
-  }
-
   .submit-button {
     margin-left: 14vh;
     font-size: 4.5vh;
@@ -96,21 +59,7 @@
 </style>
 </head>
 
-<body style="background: radial-gradient(circle, #C7F6CA, white);">
-  <nav class="navbar">
-    <ul>
-      <p>
-        <li><a style="font-family: Arial;" href="#">Vote </a></li>
-        <li><a style="font-family: Arial;" href="#">Updates |</a></li>
-        <li><a style="font-family: Arial;" href="#">Complaints | </a></li>
-        <li><a style="font-family: Arial;" href="#">| Contacts |</a> </li>
-      </p>
-      <div style="margin-top: -1.3vh;" class="search">
-        <a style="font-family: Arial;">The Pakistan <br>
-          Citizens Portal</a>
-      </div>
-    </ul>
-  </nav>
+<body>
   <!-- """SECURE VOTING CARD""" -->
   <div style="padding-top: 6vh;" class="container">
     <ul>
@@ -146,7 +95,9 @@
         vote.
 
       </p>
-      <button type="submit" class="submit-button">Vote Now</button>
+      <button type="submit" class="submit-button">
+        <a href="{% url 'voting' %}" style="color:white">Vote Now</a>
+      </button>
     </ul>
   </div>
 
