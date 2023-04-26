@@ -28,14 +28,14 @@
         font-weight: bold;
     }
 
-    input[type=checkbox] {
+    input[type=radio] {
         position: relative;
         cursor: pointer;
         margin-top: 5vh;
         margin-left: 4.5vh;
     }
 
-    input[type=checkbox]:before {
+    input[type=radio]:before {
         content: "";
         display: block;
         position: absolute;
@@ -48,7 +48,7 @@
         background-color: white;
     }
 
-    input[type=checkbox]:checked:after {
+    input[type=radio]:checked:after {
         content: "";
         display: block;
         width: 1vh;
@@ -84,17 +84,11 @@
             <p class="title">
                 Secure Voting
                 {{Candidates}}
-            <form action="/voting" method="get"> {%csrf_token%}
-                <!-- <textarea name="text"></textarea>
-                <input type="checkbox" name="candidate"> voting candidate <br>
-                <input type="checkbox" name="candidate2"> voting candidate2 <br>
-                <button type="submit">Cast Vote</button> -->
+            <form action="/voting" method="post"> {%csrf_token%}
                 {% for i in candidate %}
-                <input type="checkbox" name="candidate">
-                <a style="margin-left: 4vh; font-size: 4vh; font-family: Verdana, Geneva, Tahoma, sans-serif;">{{i}}
-                </a>
+                <input type="radio" name="candidate" id = "radio1">
+                <label for="radio1" style="margin-left: 4vh; font-size: 4vh; font-family: Verdana, Geneva, Tahoma, sans-serif;">{{i}}</label>
                 <br>
-                <!-- <a>{{i}}</a> -->
                 {% endfor %}
                 <button type="submit" class="submit-button">Cast Vote</button>
             </form>

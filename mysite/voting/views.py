@@ -25,10 +25,14 @@ def voting_screen_view(request):
     candidates = Candidate.objects.all()
     print(candidates)
     context["candidate"] = candidates
-    voted_candidate = request.POST.get('candidate', "off")
-    print(len(voted_candidate))
+    # voted_candidate = request.POST.get('candidate', "off")
+    # print(len(voted_candidate))
     # if len(voted_candidate) > 1:
     #     for i in voted_candidate:
     #         request.GET.get(i, "off")
+    if request.POST:
+        voted_candidate = request.POST.get('candidate', "off")
+        print(voted_candidate)
+        # candidate = Candidate.objects.filter(candidate_name = "")
 
-    return render(request, 'voting/voting.html', context)
+    return render(request, '/voting/voting.html', context)
