@@ -3,36 +3,104 @@
 {% block content %}
 <style>
     .container {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0px;
-  }
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0px;
+    }
 
-  .container ul {
-    background: radial-gradient(circle, #022705, #0C3F0F);
-    /* padding: 34px 19px; */
-    /* margin: 14px 19px; */
-    border-radius: 6vh;
-    width: 191vh;
-    margin-left: 5vh;
-    height: 72vh;
-    font-family: Verdana;
-    color: white;
-  }
+    .container ul {
+        background: radial-gradient(circle, #022705, #0C3F0F);
+        /* padding: 34px 19px; */
+        /* margin: 14px 19px; */
+        border-radius: 6vh;
+        width: 191vh;
+        margin-left: 5vh;
+        height: 72vh;
+        font-family: Verdana;
+        color: white;
+    }
 
-  .title {
+    .title {
         color: white;
         margin-top: 4vh;
         margin-left: 4vh;
         font-size: 6vh;
-        font-weight: 500;
+        font-weight: bold;
+    }
+
+    input[type=checkbox] {
+        position: relative;
+        cursor: pointer;
+        margin-top: 5vh;
+        margin-left: 4.5vh;
+    }
+
+    input[type=checkbox]:before {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 3vh;
+        height: 3vh;
+        top: 0;
+        left: 0;
+        border: 0.3vh solid #555555;
+        border-radius: 0.3vh;
+        background-color: white;
+    }
+
+    input[type=checkbox]:checked:after {
+        content: "";
+        display: block;
+        width: 1vh;
+        height: 2.5vh;
+        border: solid black;
+        border-width: 0 0.5vh 0.5vh 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+        position: absolute;
+        top: 0.3vh;
+        left: 1vh;
+    }
+
+    .submit-button {
+        margin-left: 14vh;
+        font-size: 4.5vh;
+        font-weight: bold;
+        border-radius: 6vh;
+        border-width: 0.65vh;
+        margin-top: 7vh;
+        padding: 2vh 8vh;
+        background: white;
+        border-color: white;
+        color: rgb(7, 39, 7);
+        margin-left: 70vh;
     }
 </style>
+
 <body>
     <div style="padding-top: 4vh;" class="container">
         <ul>
             <p class="title">
                 Secure Voting
+                {{Candidates}}
+            <form action="/voting" method="get"> {%csrf_token%}
+                <!-- <textarea name="text"></textarea>
+                <input type="checkbox" name="candidate"> voting candidate <br>
+                <input type="checkbox" name="candidate2"> voting candidate2 <br>
+                <button type="submit">Cast Vote</button> -->
+                {% for i in candidate %}
+                <input type="checkbox" name="candidate">
+                <a style="margin-left: 4vh; font-size: 4vh; font-family: Verdana, Geneva, Tahoma, sans-serif;">{{i}}
+                </a>
+                <br>
+                <!-- <a>{{i}}</a> -->
+                {% endfor %}
+                <button type="submit" class="submit-button">Cast Vote</button>
+            </form>
+            {% if error_message %}
+            <p>{{ error_message }}</p>
+            {%endif%}
             </p>
         </ul>
     </div>
