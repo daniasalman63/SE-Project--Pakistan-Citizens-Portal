@@ -1,0 +1,127 @@
+{% load static %}
+<style>
+    .container {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0px;
+    }
+
+    .container ul {
+        background: white;
+        border-radius: 6vh;
+        width: 130vh;
+        height: 120vh;
+        font-family: Arial, Helvetica, sans-serif;
+        color: white;
+        margin-left: 75vh;
+        margin-top: -78.2vh;
+    }
+
+    .createAcc {
+        color: #053908;
+        padding-top: 14vh;
+        margin-left: 20vh;
+        font-size: 8vh;
+    }
+
+    .form-field {
+        margin-left: 20vh;
+        margin-top: -0.3vh;
+        font-size: 3vh;
+        border-radius: 1.5vh;
+        padding: 0.6vh;
+        border: 0.3vh solid #022705;
+        background-color: transparent;
+        display: inline-block;
+        width: 70vh;
+        height: 6vh;
+    }
+
+    .form-label {
+        color: #022705;
+        margin-left: 20vh;
+        display: block;
+        margin-top: 1.5vh;
+        font-size: 3.5vh;
+    }
+
+    .error-message {
+        color: red;
+        margin-left: 20vh;
+    }
+
+    .submit-button {
+        margin-left: 20vh;
+        margin-top: 5vh;
+        font-size: 3vh;
+        font-weight: bold;
+        border: none;
+        border-radius: 2vh;
+        padding: 2vh 25vh;
+        background-color: #022705;
+        color: white;
+    }
+
+    .guide-text {
+        text-align: left;
+        color: #022705;
+        margin-left: 23vh;
+        font-weight: bold;
+        font-size: 2.3vh;
+        word-spacing: 0.2em;
+        letter-spacing: 0.1em;
+    }
+
+    .title {
+        color: white;
+        font-size: 7.7vh;
+        font-family: Calibri;
+        margin-top: 5vh;
+        font-weight: bold;
+        word-spacing: 0.2em;
+        margin-left: 6vh;
+    }
+</style>
+
+<body style="background: linear-gradient(to right, #022705, #0C3F0F);">
+    <p class="title">
+        The Pakistan <br>
+        Citizens Portal<br></p>
+    <img style="margin-left: 9vh;  width: 40vh; height: 40vh;" src="{% static 'img/pak_logo.png' %}"
+        alt="Image description">
+    <div class="container">
+        <ul>
+            <h2 class="createAcc">
+                Create Account
+            </h2>
+            <form method="post">{% csrf_token %}
+                {% for field in registration_form %}
+                <div>
+                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label_tag }}</label>
+                    <!-- <input type="{{ field.field.widget.input_type }}" name="{{ field.name }}" value="{{ field.value|default:'' }}"
+                {% if field.field.required %}required{% endif %} class="form-field"> -->
+
+                    {% if field.name == "CNIC" %} <!-- check if it's the CNIC field -->
+                    <input type="{{ field.field.widget.input_type }}" name="{{ field.name }}"
+                        value="{{ field.value|default:'' }}" {% if field.field.required %}required{% endif %}
+                        class="form-field" placeholder="XXXXX-XXXXXXX-X">
+                    {% else %}
+                    <input type="{{ field.field.widget.input_type }}" name="{{ field.name }}"
+                        value="{{ field.value|default:'' }}" {% if field.field.required %}required{% endif %}
+                        class="form-field">
+                    {% endif %}
+                    {% for error in field.errors %}
+                    <p class="error-message">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+                <button type="submit" class="submit-button">Create Account</button>
+            </form>
+            <p class="guide-text">Already have an account?
+                <a href="{% url 'login' %}" style="color: #022705;">
+                    Sign In
+                </a>
+            </p>
+        </ul>
+    </div>
+</body>
