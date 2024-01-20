@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .container {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0px;
+    }
+
+    .container ul {
+        background: radial-gradient(circle, #022705, #0C3F0F);
+        /* padding: 34px 19px; */
+        /* margin: 14px 19px; */
+        border-radius: 6vh;
+        width: 191vh;
+        margin-left: 5vh;
+        height: 72vh;
+        font-family: Verdana;
+        color: white;
+    }
+
+    .title {
+        color: white;
+        margin-top: 4vh;
+        margin-left: 4vh;
+        font-size: 6vh;
+        font-weight: bold;
+    }
+
+    input[type=radio] {
+        position: relative;
+        cursor: pointer;
+        margin-top: 5vh;
+        margin-left: 4.5vh;
+    }
+
+    input[type=radio]:before {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 3vh;
+        height: 3vh;
+        top: 0;
+        left: 0;
+        border: 0.3vh solid #555555;
+        border-radius: 0.3vh;
+        background-color: white;
+    }
+
+    input[type=radio]:checked:after {
+        content: "";
+        display: block;
+        width: 1vh;
+        height: 2.5vh;
+        border: solid black;
+        border-width: 0 0.5vh 0.5vh 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+        position: absolute;
+        top: 0.3vh;
+        left: 1vh;
+    }
+
+    .submit-button {
+        margin-left: 14vh;
+        font-size: 4.5vh;
+        font-weight: bold;
+        border-radius: 6vh;
+        border-width: 0.65vh;
+        margin-top: 7vh;
+        padding: 2vh 8vh;
+        background: white;
+        border-color: white;
+        color: rgb(7, 39, 7);
+        margin-left: 70vh;
+    }
+
+    .dialog-box {
+        width: 120vh;
+        height: 50vh;
+        margin-top: -55vh;
+        background-color: #d2cccc;
+        border-color: #d2cccc;
+        border-radius: 2vh;
+    }
+
+    .dialog-text {
+        font-weight: bold;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 4vh;
+        margin-left: 10vh;
+        /* margin-top: 20vh; */
+    }
+
+    .yes-button {
+        margin-top: 15vh;
+        margin-left: 5vh;
+        width: 45vh;
+        height: 10vh;
+        background-color: rgb(117, 13, 13);
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-weight: bold;
+        color: white;
+        font-size: 3vh;
+        border-color: rgb(117, 13, 13);
+        border-radius: 2vh;
+    }
+
+    .no-button {
+        margin-top: 15vh;
+        margin-left: 10vh;
+        width: 45vh;
+        height: 10vh;
+        background-color: rgb(7, 39, 7);
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-weight: bold;
+        color: white;
+        font-size: 3vh;
+        border-color: rgb(7, 39, 7);
+        border-radius: 2vh;
+    }
+    a:visited {
+        text-decoration: none;
+        color: white;
+    }
+</style>
+
+<body>
+    <div style="padding-top: 4vh;" class="container">
+        <ul>
+            <p class="title">
+                Vote from the given options
+            <form method="post">
+                {%csrf_token%}
+                {% for i in candidate %}
+                <input type="radio" name="candidate" id="{{i}}">
+                <label for="{{i}}" value="{{i}}"
+                    style="margin-left: 4vh; font-size: 4vh; font-family: Verdana, Geneva, Tahoma, sans-serif;">{{i}}</label>
+                <br>
+                {% endfor %}
+                <button onclick="showDialog()" class="submit-button">
+                    <a>Cast Vote</a>
+                </button>
+                <dialog class="dialog-box" id="myDialog"> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+                    <a class="dialog-text">Are u sure you want to submit your vote?</a> <br>
+                    <button onclick="closeDialog()" class="no-button">
+                        <a href="{% url 'home' %}" style="text-decoration: none;">Submit</a></button>
+                    <button class="yes-button">
+                        <a href="{% url 'voting'%}" style="text-decoration: none;">Cancel</a>
+                    </button>
+                </dialog>
+            </form>
+            {% if error_message %}
+            <p>{{ error_message }}</p>
+            {%endif%}
+            </p>
+        </ul>
+    </div>
+</body>
+<script>
+    const dialog = document.getElementById("myDialog");
+
+    function showDialog() {
+        dialog.show();
+        event.preventDefault();
+    }
+
+    function closeDialog() {
+        dialog.close();
+    } 
+</script>
+{% endblock content %}
