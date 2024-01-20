@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{%load static%}
+<style>
+    .container {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0px;
+    }
+
+    .container ul {
+        background: radial-gradient(circle, #022705, #0C3F0F);
+        /* padding: 34px 19px; */
+        /* margin: 14px 19px; */
+        border-radius: 6vh;
+        width: 191vh;
+        margin-left: 5vh;
+        height: 72vh;
+        font-family: Verdana;
+        color: white;
+    }
+
+    .title {
+        color: white;
+        margin-top: -12vh;
+        margin-left: 4vh;
+        font-size: 6vh;
+        font-weight: bold;
+        line-height: 1em;
+    }
+
+    .dialog-text {
+        font-weight: bold;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 4vh;
+        margin-left: 10vh;
+        /* margin-top: 20vh; */
+    }
+
+    a:visited {
+        text-decoration: none;
+        color: white;
+    }
+
+    .heading-text {
+        color: black;
+        font-weight: bold;
+        font-family: Calibri;
+        font-size: 2.3vh;
+    }
+
+    .non-heading-text {
+        color: black;
+        font-family: Calibri;
+        font-size: 2.3vh;
+    }
+
+    .griditems-child {
+        background-color: white;
+        padding: 1vh;
+        display: grid;
+        grid-gap: 1vh;
+        width: 175vh;
+        margin-left: 5vh;
+        grid-template-columns: auto auto auto auto;
+        margin-top: -4vh;
+    }
+
+    .griditems-child>div {
+        background-color: rgb(231, 244, 231);
+        padding: 3vh;
+        text-align: center;
+        font-size: 2.3vh;
+    }
+</style>
+
+<body>
+    <div style="padding-top: 4vh;" class="container">
+        <ul>
+            <form method="get">
+                <input type="text" name="q" placeholder="Search contacts" style="margin-left:130vh; height: 5vh;
+        margin-top: 7vh; width: 40vh; font-family: Calibri; font-size: 2.3vh; border-radius: 1vh; border-color: white;">
+  <button type="submit" style="height: 4vh; width: 10vh; font-family: Calibri; font-size: 2.3vh; border-radius: 1vh; 
+  border-color: white; background-color: transparent; color: white;">Search</button>
+            </form>
+            <!-- <input type="text" name="q" placeholder="Search contacts" style="margin-left:130vh; height: 5vh;
+        margin-top: -8vh; width: 40vh;">
+  <button type="submit" style="height: 4vh; width: 10vh;">Search</button> -->
+            <img style="margin-left: -141vh; margin-top:-7vh; width: 90px; height: 90px; position: relative;"
+        src="{% static 'img/icon4.png' %}" alt="Image description">
+            <p class="title">
+                Important <br>
+                Contacts
+            </p>
+            
+            <form method="post">
+                {%csrf_token%}
+                <div class="griditems-child">
+                    {% for i in contact%}
+                    <div>
+                        <a class="heading-text">Name: </a>
+                        <a class="non-heading-text">{{i.contact_name}}</a> <br>
+                        <a class="heading-text"">Email: </a>
+                <a class=" non-heading-text">{{i.contact_email}}</a> <br>
+                        <a class="heading-text">Phone: {{i.contact_phone}}</a>
+                    </div>
+                    {%endfor%}
+                </div>
+            </form>
+        </ul>
+    </div>
+</body>
+{% endblock content %}
